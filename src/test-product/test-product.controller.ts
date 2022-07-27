@@ -11,14 +11,14 @@ export class TestProductController {
 
 	@Get()
 	@Header('Access-Control-Allow-Origin', '*')
-	async findAll(): Promise<TestProduct[]> {
+	findAll(): Promise<TestProduct[]> {
 		// return 'This action returns all cats';
 		return this.testProductService.getAll();
 	}
 
 	@Get(':id')
 	@Header('Access-Control-Allow-Origin', '*')
-	async getOne(@Param('id') id: string): Promise<TestProduct> {
+	getOne(@Param('id') id: string): Promise<TestProduct> {
 		// return 'This action returns all cats';
 		return this.testProductService.getById(id);
 	}
@@ -27,19 +27,19 @@ export class TestProductController {
 	@Header('Access-Control-Allow-Origin', '*')
 	@HttpCode(HttpStatus.CREATED)
 	@Header('Cache-Control', 'none')
-	async create(@Body() createTestProductDTO: CreateTestProductDto): Promise<TestProduct>{
+	create(@Body() createTestProductDTO: CreateTestProductDto): Promise<TestProduct>{
 		return this.testProductService.create(createTestProductDTO);
 	}
 
 	@Delete(':id')
 	@Header('Access-Control-Allow-Origin', '*')
-	async remove(@Param('id') id: string): Promise<TestProduct>{
+	remove(@Param('id') id: string): Promise<TestProduct>{
 		return this.testProductService.remove(id);
 	}
 
 	@Put(':id')
 	@Header('Access-Control-Allow-Origin', '*')
-	async update(@Body() updateTestProductDto: UpdateTestProductDto, @Param(':id') id: string): Promise<TestProduct>{
+	update(@Body() updateTestProductDto: UpdateTestProductDto, @Param(':id') id: string): Promise<TestProduct>{
 		return this.testProductService.update(id, updateTestProductDto);
 	}
 

@@ -5,10 +5,10 @@ import { StatisticsController } from './statistics.controller';
 import { StatisticsService } from './statistics.service';
 
 @Module({
-  imports: [MongooseModule.forFeature([
-	{ name:Statistics.name, schema:StatisticsSchema }
-  ])],
-  providers: [StatisticsService],
-  controllers: [StatisticsController]
+	imports: [MongooseModule.forFeature([
+		{ name:Statistics.name, schema:StatisticsSchema }
+	])],
+	providers: [StatisticsService],
+	controllers: [StatisticsController]
 })
 export class StatisticsModule {}

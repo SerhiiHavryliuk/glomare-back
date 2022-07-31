@@ -17,18 +17,17 @@ export class UsersController {
 	}
 
 	@Get(':id')
-	async getUser(@Param('id') id): Promise<User> {
+	getUser(@Param('id') id): Promise<User> {
 		return this.usersService.getById(id);
 	}
 
 	@Put(':id')
-	async updateUser(@Body() updateUserDto: UpdateUserDto, @Param('id') id): Promise<User> {
+	updateUser(@Body() updateUserDto: UpdateUserDto, @Param('id') id): Promise<User> {
 		return this.usersService.update(id, updateUserDto);
 	}
 
 	@Put(':id/pass')
-	async updateUserPass(@Body() updateUserPassDto: UpdateUserPassDto, @Param('id') id) {
+	updateUserPass(@Body() updateUserPassDto: UpdateUserPassDto, @Param('id') id) {
 		return this.usersService.updatePass(id, updateUserPassDto);
 	}
 }
-

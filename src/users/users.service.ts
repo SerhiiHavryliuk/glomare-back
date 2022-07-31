@@ -8,56 +8,56 @@ import { UpdateUserPassDto } from './dto/update-user-pass.dto';
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
+	constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
-  async create(firstName: string,
-				lastName: string,
-				phone: number,
-				email: string,
-				hashedPassword: string
-				): Promise<User> {
-  const createdUser = new this.userModel({
-				firstName,
-				lastName,
-				phone,
-				email,
-				passHash: hashedPassword
-  });
-	return createdUser.save();
-  }
-
-  async findByEmail(email:string): Promise<UserDocument | null> {
-	return this.userModel.findOne({email}).exec();
-  }
-
-  async findAll(): Promise<User[]> {
-	return this.userModel.find().exec();
-  }
-
-  async saveRefreshToken(email: string, tokenId: string) {
-	const filter = { email: email };
-	this.userModel.findOneAndUpdate(filter,
-		{
-		$set:{
-			refresh_token : tokenId
-		}
+	async create(firstName: string,
+							 lastName: string,
+							 phone: number,
+							 email: string,
+							 hashedPassword: string
+	): Promise<User> {
+		const createdUser = new this.userModel({
+			firstName,
+			lastName,
+			phone,
+			email,
+			passHash: hashedPassword
 		});
-  }
+		return createdUser.save();
+	}
 
-  async removeRefreshToken(email: string) {
-	const filter = { email: email };
-	this.userModel.findOneAndUpdate(filter,
-		{
-		$set:{
-			refresh_token : ''
-		}
-		});
-  }
-  async findByRefreshTokenId(tokenId:string) {
-	const filter = { refresh_token: tokenId };
-	const user = await this.userModel.findOne(filter).exec();
-	return user;
-  }
+	async findByEmail(email:string): Promise<UserDocument | null> {
+		return this.userModel.findOne({email}).exec();
+	}
+
+	async findAll(): Promise<User[]> {
+		return this.userModel.find().exec();
+	}
+
+	async saveRefreshToken(email: string, tokenId: string) {
+		const filter = { email: email };
+		await this.userModel.findOneAndUpdate(filter,
+			{
+				$set:{
+					refresh_token : tokenId
+				}
+			});
+	}
+
+	async removeRefreshToken(email: string) {
+		const filter = { email: email };
+		await this.userModel.findOneAndUpdate(filter,
+			{
+				$set:{
+					refresh_token : ''
+				}
+			});
+	}
+	async findByRefreshTokenId(tokenId:string) {
+		const filter = { refresh_token: tokenId };
+		const user = await this.userModel.findOne(filter).exec();
+		return user;
+	}
 	async getById(id: string): Promise<User> {
 		return this.userModel.findById(id);
 	}

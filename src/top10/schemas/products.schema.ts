@@ -5,64 +5,64 @@ export type ProductDocument = Product & Document;
 
 @Schema()
 export class Product {
+	
+@Prop()
+title:string;
 
-	@Prop()
-	title:string;
+@Prop()
+price:number;
 
-	@Prop()
-	price:number;
+@Prop()
+description:string;
 
-	@Prop()
-	description:string;
+@Prop()
+rating:number;
 
-	@Prop()
-	rating:number;
+@Prop()
+brand:string;
 
-	@Prop()
-	brand:string;
+@Prop()
+category:string;
 
-	@Prop()
-	category:string;
+@Prop()
+thumbnail:string;
 
-	@Prop()
-	thumbnail:string;
+@Prop()
+images:Array<string>;
 
-	@Prop()
-	images:Array<string>;
+@Prop()
+categoryId:string;
 
-	@Prop()
-	categoryId:string;
+@Prop()
+lease_term:number;
 
-	@Prop()
-	lease_term:number;
+@Prop()
+lease_date:number;
 
-	@Prop()
-	lease_date:number;
+@Prop()
+expires_at:string;
 
-	@Prop()
-	expires_at:string;
-
-	@Prop({type:Object})
+@Prop({type:Object})
 // tslint:disable-next-line:no-any
-	leaser_info:any;
+leaser_info:any;
 
-	@Prop()
-	status:string;
+@Prop()
+status:string;
 
-	@Prop()
-	isPrivate:boolean;
+@Prop()
+isPrivate:boolean;
 
-	@Prop()
-	condition:string;
+@Prop()
+condition:string;
 
-	@Prop()
-	isFree:boolean;
+@Prop()
+isFree:boolean;
 
-	@Prop()
-	location:string;
+@Prop()
+location:string;
 
-	@Prop()
-	date_created:number;
+@Prop()
+date_created:number;
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);

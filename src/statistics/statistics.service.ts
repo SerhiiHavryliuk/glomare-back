@@ -17,7 +17,7 @@ export class StatisticsService {
 	}
 
 	async updateStatistics(route: string): Promise<Statistics> {
-		const statistics = await this.statisticsModel.findOne({date: (new Date()).setHours(0, 0, 0, 0)});
+		const statistics = this.statisticsModel.findOne({date: (new Date()).setHours(0, 0, 0, 0)});
 		if(statistics === null){
 			const newArticle = new this.statisticsModel({
 				date: (new Date()).setHours(0, 0, 0, 0),

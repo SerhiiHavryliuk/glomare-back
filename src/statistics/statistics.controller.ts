@@ -7,17 +7,17 @@ export class StatisticsController {
 	constructor(private readonly statisticsService:StatisticsService){}
 
 	@Get()
-	getAllStatistics () : Promise<Statistics[]> {
+	async getAllStatistics () : Promise<Statistics[]> {
 		return this.statisticsService.getAllStatistics();
 	}
 
 	@Get(':date')
-	getOneStatistics (@Param('date') date) : Promise<Statistics>{
+	async getOneStatistics (@Param('date') date) : Promise<Statistics>{
 		return this.statisticsService.getOneStatistics(date);
 	}
 
 	@Put(':route')
-	updateArticle(@Param('route') route:string){
+	async updateArticle(@Param('route') route:string){
 		return this.statisticsService.updateStatistics(route);
 	}
 }

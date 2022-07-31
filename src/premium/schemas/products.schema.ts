@@ -43,6 +43,7 @@ lease_date:number;
 expires_at:string;
 
 @Prop({type:Object})
+// tslint:disable-next-line:no-any
 leaser_info:any;
 
 @Prop()
